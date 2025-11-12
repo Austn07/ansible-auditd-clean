@@ -65,24 +65,24 @@ These rules help detect unauthorized system modifications and privilege escalati
 ## Architecture Diagram
 
 ```text
-           ┌────────────────────────────┐
+           ┌─────────────────────────────┐
            │         GitHub Repo         │
            │  (hosts playbook.yml)       │
            └──────────────┬──────────────┘
                           │ ansible-pull
                           ▼
-           ┌────────────────────────────┐
+           ┌─────────────────────────────┐
            │     Ubuntu 24.x VM          │
            │  Ansible client executes    │
            │  playbook to install Auditd │
            └──────────────┬──────────────┘
                           │
                           ▼
-           ┌────────────────────────────┐
+           ┌─────────────────────────────┐
            │        Auditd Service       │
            │   Logs monitored events     │
            │   (/var/log/audit/audit.log)│
-           └────────────────────────────┘
+           └─────────────────────────────┘
 ```
 
 ---
