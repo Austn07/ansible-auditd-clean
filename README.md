@@ -38,7 +38,7 @@ ansible-auditd-clean/
 
 2. Run the playbook using ansible-pull:
    ```bash
-   sudo ansible-pull -U https://github.com/<your-username>/ansible-auditd-clean.git -C main playbook.yml
+   sudo ansible-pull -U https://github.com/Austn07/ansible-auditd-clean.git -C main playbook.yml
    ```
 
 3. Verify successful setup:
@@ -124,4 +124,4 @@ It is safe for local VM use and follows standard Ubuntu audit configuration prac
 ---
 
 ## Repository Link
-GitHub Repository: https://github.com/<your-username>/ansible-auditd-clean
+GitHub Repository: https://github.com/Austn07/ansible-auditd-clean
