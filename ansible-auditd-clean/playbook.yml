@@ -1,0 +1,39 @@
+---
+- name: Install and configure auditd on Ubuntu
+  hosts: localhost
+  become: yes
+  tasks:
+
+    - name: Install auditd
+      apt:
+        name: auditd
+        state: present
+        update_cache: yes
+
+    - name: Create audit rules file
+      copy:
+        dest: /etc/audit/rules.d/audit.rules
+        content: |
+          -w /etc/passwd -p wa -k passwd_changes
+          -w /etc/sudoers -p wa -k sudo_changes
+          -w /var/log/ -p wa -k log_access
+        owner: root
+        group: root
+        mode: '0600'
+
+    - name: Load audit rules
+      command: augenrules --load
+
+    - name: Enable and start auditd service
+      systemd:
+        name: auditd
+        enabled: yes
+        state: started
+
+    - name: Verify audit rules loaded
+      command: auditctl -l
+      register: rules_output
+
+    - name: Show loaded rules
+      debug:
+        var: rules_output.stdout_lines
